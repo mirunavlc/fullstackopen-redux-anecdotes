@@ -40,6 +40,7 @@ export const createAnecdote = (content) => {
 
 export const updateVote = (anecdote) => {
   return async (dispatch) => {
+    console.log(anecdote);
     anecdotesService.updateVote(anecdote);
     dispatch(addVote(anecdote.id));
   };
