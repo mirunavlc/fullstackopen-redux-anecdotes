@@ -19,6 +19,8 @@ const notificationSlice = createSlice({
 
 export const setNotification = (content, timeoutSec) => {
   return async (dispatch) => {
+    dispatch(remove());
+
     dispatch(set(content));
     setTimeout(() => {
       dispatch(remove());
