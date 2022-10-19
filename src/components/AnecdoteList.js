@@ -4,12 +4,14 @@ import {
   setNotification,
   removeNotification,
 } from "../reducers/notificationReducer";
+import serviceAnecdotes from "../services/anecdotes";
 
 const Anecdote = ({ anecdote }) => {
   const dispatch = useDispatch();
-  const vote = (id) => {
-    console.log("vote", id);
-    dispatch(addVote(id));
+  const vote = (anecdote) => {
+    console.log("vote", anecdote.id);
+    serviceAnecdotes.updateVote(anecdote);
+    dispatch(addVote(anecdote.id));
   };
 
   const notify = (content) => {
@@ -29,7 +31,7 @@ const Anecdote = ({ anecdote }) => {
         has {anecdote.votes}
         <button
           onClick={() => {
-            vote(anecdote.id);
+            vote(anecdote);
             notify(anecdote.content);
             setTimeout(() => {
               remove();
